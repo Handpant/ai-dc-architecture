@@ -4,11 +4,9 @@ Investor[USD Institutional Investor / Infra Fund] -->|Equity / Debt| VCC[Singapo
 
 subgraph SPV_1 [SPV 1: Infra & Real Estate]
     direction TB
-    Land["Freehold Land Titles
-(Mumbai / Chennai)"]
+    Land["Freehold Land Titles (Mumbai / Chennai)"]
     Shell["Powered Shell & Building"]
-    Utility["Primary Power Substation
-Liquid Cooling Loops"]
+    Utility["Primary Power Substation + Liquid Cooling Loops"]
 end
 
 VCC -->|Equity| SPV_1
@@ -25,8 +23,7 @@ VCC -->|Equity / Lease Finance| SPV_2
 Tenant["Global AI Lab / Enterprise Tenant"] -->|USD Payments| SPV_2
 SPV_2 -->|Monthly Infrastructure Fee| SPV_1
 
-Operator["Infinie Cybersault
-(Specialist Operator)"] -.->|SLA-Based Management| SPV_1
+Operator["Infinie Cybersault (Specialist Operator)"] -.->|SLA-Based Management| SPV_1
 Operator -.->|Technical Ops & Optimization| SPV_2
 
 SPV_1 --- Exit1["Exit: Global Infra Fund / REIT"]
