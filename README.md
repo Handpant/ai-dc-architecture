@@ -1,50 +1,56 @@
 ```mermaid
 graph TD
 
-Investor[USD Institutional Investor / Infra Fund]
+Investor[USD Institutional Investor]
 VCC[Singapore VCC]
 
 Investor --> VCC
 
-subgraph SPV_1 [SPV 1 - Data Centre (Infra SPV)]
-    direction TB
-    DC["Data Centre Platform
-Initial 2 MW June
-Scale 10-12 MW"]
-    Land["Land"]
-    Building["Building / Modular DC"]
-    Infra["Power and Cooling"]
+%% SPV 1 - INFRA
+subgraph SPV1
+SPV1_DC[SPV 1 - Data Centre]
+SPV1_Land[Land]
+SPV1_Building[Building / Modular DC]
+SPV1_Infra[Power and Cooling]
 end
 
-VCC --> SPV_1
+VCC --> SPV1_DC
+SPV1_DC --> SPV1_Land
+SPV1_DC --> SPV1_Building
+SPV1_DC --> SPV1_Infra
 
-subgraph SPV_2 [SPV 2 - Project Equipment (Compute SPV)]
-    direction TB
-    GPUs["GPUs
-June 1500-2000
-Target 8000"]
-    Servers["AI Servers"]
+%% SPV 2 - COMPUTE
+subgraph SPV2
+SPV2_Core[SPV 2 - Project Equipment]
+SPV2_GPUs[GPUs 1500-2000 June / 8000 Target]
+SPV2_Servers[AI Servers]
 end
 
-VCC --> SPV_2
+VCC --> SPV2_Core
+SPV2_Core --> SPV2_GPUs
+SPV2_Core --> SPV2_Servers
 
+%% TENANT FLOW
 Tenant[Tenant]
-Tenant -->|USD per GPU| SPV_2
+Tenant -->|USD per GPU| SPV2_Core
 
-SPV_2 -->|DC Lease and Services| SPV_1
+%% INTER-SPV ECONOMICS
+SPV2_Core -->|DC Lease and Services| SPV1_DC
 
-Cybersault["Cybersault Operator"]
-SPV_1 -->|Facilities SLA| Cybersault
-SPV_2 -->|Platform Ops SLA| Cybersault
+%% OPERATOR
+Cybersault[Cybersault Operator]
+SPV1_DC -->|Facilities SLA| Cybersault
+SPV2_Core -->|Platform Ops SLA| Cybersault
 
-June["June Go Live
-2 MW Pilot"]
-June -.-> SPV_1
-June -.-> SPV_2
+%% JUNE GO LIVE
+June[June Go Live - 2 MW Pilot]
+June -.-> SPV1_DC
+June -.-> SPV2_Core
 
-ExitInfra["Exit Infra Fund"]
-ExitCompute["Exit Hyperscaler"]
+%% EXITS
+ExitInfra[Infra Fund or REIT Exit]
+ExitCompute[Hyperscaler Exit]
 
-SPV_1 --- ExitInfra
-SPV_2 --- ExitCompute
+SPV1_DC --- ExitInfra
+SPV2_Core --- ExitCompute
 ```
