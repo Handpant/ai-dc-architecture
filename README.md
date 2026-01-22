@@ -3,7 +3,9 @@ graph TD
 
 %% Capital Source
 Investor[USD Institutional Investor / Infra Fund]
-Investor -->|Equity / Debt| VCC[Singapore VCC / Master Holdco]
+VCC[Singapore VCC / Master Holdco]
+
+Investor -->|Equity / Debt| VCC
 
 %% SPV 1: Infra & Real Estate
 subgraph SPV_1 [SPV 1: Infra & Real Estate]
@@ -36,19 +38,35 @@ Operator -.->|SLA-Based Management| SPV_1
 Operator -.->|Technical Ops & Optimization| SPV_2
 
 %% Exit Paths
-SPV_1 --- Exit1["Exit: Global Infra Fund / REIT"]
-SPV_2 --- Exit2["Exit: Strategic Hyperscaler / IPO"]
+Exit1["Exit: Global Infra Fund / REIT"]
+Exit2["Exit: Strategic Hyperscaler / IPO"]
+
+SPV_1 --- Exit1
+SPV_2 --- Exit2
 
 %% IRR Annotations (as nodes – GitHub safe)
 IRR1["IRR: 14–18%
 Yield-Oriented Infra
-Land + Power + Cooling
-Re-rating on Exit"]
+Land + Power + Cooling"]
 IRR2["IRR: 22–28%
 High-Growth Compute
-USD GPU Contracts
-Strategic / IPO Exit"]
+USD GPU Contracts"]
 
 IRR1 -.-> SPV_1
 IRR2 -.-> SPV_2
+
+%% -------- STYLING --------
+classDef capital fill:#0B3C5D,color:#ffffff,stroke:#0B3C5D,stroke-width:2px
+classDef infra fill:#E5E7EB,color:#111827,stroke:#6B7280,stroke-width:1.5px
+classDef compute fill:#2563EB,color:#ffffff,stroke:#1E40AF,stroke-width:1.5px
+classDef annotation fill:#DBEAFE,color:#1E3A8A,stroke:#93C5FD,stroke-width:1px
+classDef neutral fill:#F3F4F6,color:#111827,stroke:#9CA3AF,stroke-width:1px
+classDef exit fill:#CBD5E1,color:#0F172A,stroke:#64748B,stroke-width:1.5px
+
+class Investor,VCC capital
+class SPV_1,Land,Shell,Utility infra
+class SPV_2,GPUs,Servers,Networking compute
+class IRR1,IRR2 annotation
+class Tenant,Operator neutral
+class Exit1,Exit2 exit
 ```
