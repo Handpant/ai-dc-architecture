@@ -1,72 +1,118 @@
 ```mermaid
 graph TD
 
-%% Capital Source
+%% =========================
+%% CAPITAL & HOLDCO
+%% =========================
 Investor[USD Institutional Investor / Infra Fund]
-VCC[Singapore VCC / Master Holdco]
+VCC[Singapore VCC]
 
 Investor -->|Equity / Debt| VCC
 
-%% SPV 1: Infra & Real Estate
-subgraph SPV_1 [SPV 1: Infra & Real Estate]
+%% =========================
+%% SPV 1 – DATA CENTRE (INFRA)
+%% =========================
+subgraph SPV_1 [SPV 1 – Data Centre (Infra SPV)]
     direction TB
-    Land["Freehold Land Titles (Mumbai / Chennai)"]
-    Shell["Powered Shell & Building"]
-    Utility["Primary Power Substation + Liquid Cooling Loops"]
+    DC["Data Centre Platform
+Initial: 2 MW (June Pilot)
+Scale: 10–12 MW"]
+    Land["Land
+(Owned / Optioned)"]
+    Building["Building / Modular DC"]
+    Infra["Power, Cooling & Utilities"]
 end
 
 VCC -->|Equity| SPV_1
 
-%% SPV 2: AI Technology Stack
-subgraph SPV_2 [SPV 2: AI Technology Stack]
+DC --> Land
+DC --> Building
+DC --> Infra
+
+%% =========================
+%% SPV 2 – PROJECT EQUIPMENT
+%% =========================
+subgraph SPV_2 [SPV 2 – Project Equipment (Compute SPV)]
     direction TB
-    GPUs["8,000 NVIDIA B300 GPUs"]
-    Servers["High-Density Rack Architecture"]
-    Networking["InfiniBand / Quantum-X800 Fabric"]
+    GPUs["GPUs
+June: 1,500–2,000
+Target: ~8,000"]
+    Servers["AI Servers / Racks"]
 end
 
 VCC -->|Equity / Lease Finance| SPV_2
 
-%% Operating Flows
-Tenant["Global AI Lab / Enterprise Tenant"]
-Tenant -->|USD Payments| SPV_2
-SPV_2 -->|Monthly Infrastructure Fee| SPV_1
+%% =========================
+%% TENANT ECONOMICS
+%% =========================
+Tenant[Tenant / AI Workload Owner]
 
-%% Operator
-Operator["Infinie Cybersault (Specialist Operator)"]
-Operator -.->|SLA-Based Management| SPV_1
-Operator -.->|Technical Ops & Optimization| SPV_2
+Tenant -->|USD / GPU (All-in)| SPV_2
 
-%% Exit Paths
-Exit1["Exit: Global Infra Fund / REIT"]
-Exit2["Exit: Strategic Hyperscaler / IPO"]
+%% =========================
+%% INTER-SPV ECONOMICS (KEY)
+%% =========================
+SPV_2 -->|DC Lease + Power + Cooling Fees| SPV_1
 
-SPV_1 --- Exit1
-SPV_2 --- Exit2
+%% =========================
+%% OPERATOR – CYBERSAULT
+%% =========================
+Cybersault["Cybersault
+(Specialist DC & AI Ops Operator)"]
 
-%% IRR Annotations (as nodes – GitHub safe)
+SPV_1 -->|DC Operations & Facilities (SLA)| Cybersault
+SPV_2 -->|Platform Ops, Monitoring & Optimisation| Cybersault
+
+%% =========================
+%% JUNE GO-LIVE OVERLAY
+%% =========================
+June["June Go-Live Pilot
+• 2 MW live capacity
+• Hybrid liquid cooling
+• 1,500–2,000 GPUs
+• Revenue-generating"]
+
+June -.-> SPV_1
+June -.-> SPV_2
+
+%% =========================
+%% EXIT PATHS
+%% =========================
+ExitInfra["Exit:
+Global Infra Fund / REIT"]
+ExitCompute["Exit:
+Hyperscaler / Strategic Buyer"]
+
+SPV_1 --- ExitInfra
+SPV_2 --- ExitCompute
+
+%% =========================
+%% IRR ANNOTATIONS (SAFE)
+%% =========================
 IRR1["IRR: 14–18%
-Yield-Oriented Infra
-Land + Power + Cooling"]
+Yield-oriented
+Land + DC Re-rating"]
 IRR2["IRR: 22–28%
-High-Growth Compute
-USD GPU Contracts"]
+Compute upside
+USD GPU contracts"]
 
 IRR1 -.-> SPV_1
 IRR2 -.-> SPV_2
 
-%% -------- STYLING --------
+%% =========================
+%% STYLING – INVESTOR BLUE / GREY
+%% =========================
 classDef capital fill:#0B3C5D,color:#ffffff,stroke:#0B3C5D,stroke-width:2px
 classDef infra fill:#E5E7EB,color:#111827,stroke:#6B7280,stroke-width:1.5px
 classDef compute fill:#2563EB,color:#ffffff,stroke:#1E40AF,stroke-width:1.5px
-classDef annotation fill:#DBEAFE,color:#1E3A8A,stroke:#93C5FD,stroke-width:1px
 classDef neutral fill:#F3F4F6,color:#111827,stroke:#9CA3AF,stroke-width:1px
+classDef annotation fill:#DBEAFE,color:#1E3A8A,stroke:#93C5FD,stroke-width:1px
 classDef exit fill:#CBD5E1,color:#0F172A,stroke:#64748B,stroke-width:1.5px
 
 class Investor,VCC capital
-class SPV_1,Land,Shell,Utility infra
-class SPV_2,GPUs,Servers,Networking compute
-class IRR1,IRR2 annotation
-class Tenant,Operator neutral
-class Exit1,Exit2 exit
+class SPV_1,DC,Land,Building,Infra infra
+class SPV_2,GPUs,Servers compute
+class Tenant,Cybersault neutral
+class June,IRR1,IRR2 annotation
+class ExitInfra,ExitCompute exit
 ```
