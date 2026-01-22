@@ -39,19 +39,16 @@ Operator -.->|Technical Ops & Optimization| SPV_2
 SPV_1 --- Exit1["Exit: Global Infra Fund / REIT"]
 SPV_2 --- Exit2["Exit: Strategic Hyperscaler / IPO"]
 
-%% IRR Notes (MUST be separated by a blank line)
+%% IRR Annotations (as nodes – GitHub safe)
+IRR1["IRR: 14–18%
+Yield-Oriented Infra
+Land + Power + Cooling
+Re-rating on Exit"]
+IRR2["IRR: 22–28%
+High-Growth Compute
+USD GPU Contracts
+Strategic / IPO Exit"]
 
-note right of SPV_1
-  IRR: 14–18%
-  Yield-Oriented Infra
-  Land + Power + Cooling
-  Re-rating on Exit
-end
-
-note right of SPV_2
-  IRR: 22–28%
-  High-Growth Compute
-  USD GPU Contracts
-  Strategic / IPO Exit
-end
+IRR1 -.-> SPV_1
+IRR2 -.-> SPV_2
 ```
