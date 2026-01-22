@@ -5,7 +5,7 @@ graph TD
 Investor[USD Institutional Investor / Infra Fund]
 Investor -->|Equity / Debt| VCC[Singapore VCC / Master Holdco]
 
-%% SPV 1: Infra & Real Estate (Yield Play)
+%% SPV 1: Infra & Real Estate
 subgraph SPV_1 [SPV 1: Infra & Real Estate]
     direction TB
     Land["Freehold Land Titles (Mumbai / Chennai)"]
@@ -15,7 +15,7 @@ end
 
 VCC -->|Equity| SPV_1
 
-%% SPV 2: AI Technology Stack (High IRR Play)
+%% SPV 2: AI Technology Stack
 subgraph SPV_2 [SPV 2: AI Technology Stack]
     direction TB
     GPUs["8,000 NVIDIA B300 GPUs"]
@@ -38,4 +38,19 @@ Operator -.->|Technical Ops & Optimization| SPV_2
 %% Exit Paths
 SPV_1 --- Exit1["Exit: Global Infra Fund / REIT"]
 SPV_2 --- Exit2["Exit: Strategic Hyperscaler / IPO"]
+
+%% IRR Notes
+note right of SPV_1
+  IRR: 14–18%
+  Stable Yield Play
+  Land + Power + Cooling
+  Re-rating on Land Exit
+end
+
+note right of SPV_2
+  IRR: 22–28%
+  High-Growth Compute
+  USD GPU Contracts
+  Strategic / IPO Exit
+end
 ```
