@@ -39,12 +39,13 @@ Operator -.->|Technical Ops & Optimization| SPV_2
 SPV_1 --- Exit1["Exit: Global Infra Fund / REIT"]
 SPV_2 --- Exit2["Exit: Strategic Hyperscaler / IPO"]
 
-%% IRR Notes
+%% IRR Notes (MUST be separated by a blank line)
+
 note right of SPV_1
   IRR: 14–18%
-  Stable Yield Play
+  Yield-Oriented Infra
   Land + Power + Cooling
-  Re-rating on Land Exit
+  Re-rating on Exit
 end
 
 note right of SPV_2
